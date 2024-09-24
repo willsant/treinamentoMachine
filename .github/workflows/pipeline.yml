@@ -1,0 +1,22 @@
+name: Esteira para aplicação treinamentoMachine
+
+# ele vai rodar aós a atualização nas branches listadas abaixo, nesse caso a main
+on:
+  push:
+    branches:
+      - main
+
+# similar aos stages do jenkins e do gitlab ci
+jobs:
+  build:
+  runs-on: self-hosted # para n~çao rodar no runner do github que é pago
+    steps:
+      - uses: actions/checkout@v4 # clona o repositório do github para dentro do runner
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+      
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
